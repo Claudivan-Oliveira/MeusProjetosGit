@@ -1,0 +1,158 @@
+/// Snake v3 by Aruni Amstel. created in may, 2017. copyleft. no warranties guarranted.
+
+#include <iostream>
+#include <stdlib.h>
+#include <math.h>
+#include <windows.h>
+#include <string>
+#include <vector>
+#include <fstream>
+//#include <Itados.h>
+//#include <Graphics.h>
+//#include <asmv.h>
+
+#include<stdio.h>
+#include<conio.h>
+#include<time.h>
+
+
+using namespace std;
+
+string NOME;
+string RUN;
+int Opcao;
+string Disco = "A:";
+
+int Padron1 = 0;
+int Delay = 0;
+
+char tecla;
+char sqr = 219;
+
+void gotoxy( int column, int line )
+  {
+  COORD coord;
+  coord.X = column;
+  coord.Y = line;
+  SetConsoleCursorPosition(
+    GetStdHandle( STD_OUTPUT_HANDLE ),
+    coord
+    );
+  }
+int MenurPrincipal();
+int main () {
+srand(time(NULL));
+system ("cls");
+system ("color 0a"); //ret
+
+Cmd:
+    system("cls");
+    
+    cout<<"\n\n";
+    cout<<"\n\t                      MENU PRINCIPAL                      "<< endl;
+    //cout<<"\n\t##########################################################";
+    cout<<"\n\t                                                             ";
+    cout<<"\n\t            Digite um comando para prosseguir:               ";
+    cout<<"\n\t                                                             ";
+    cout<<"\n\t            1 -> Iniciciar                                   ";
+    cout<<"\n\t            0 -> Sair                                        ";
+    cout<<"\n\t                                                             ";
+   // cout<<"\n\t##########################################################";
+
+    cout<<"\n\n";    
+    cin >> Opcao;
+    cout<<"\tDigite a Velocidade em que voce deseja jogar:\n \n\t 500 -> MUITO LENTA \n\t 400 -> LENTA \n\t 300 -> NORMAL \n\t 100 -> RAPIDA \n\t 50  -> MUITO RAPIDA\n\n"<< endl;
+      if (Opcao == 1 ) {
+        cin >> Delay;
+        if ((Delay < 10) || (Delay > 1500)) { /// SET THE DEFAULT DELAY
+            Delay = 500;
+        }
+        cout << "\tCARREGANDO..." << endl;
+    Sleep (1000);
+    system("cls");
+    system("color 00");
+    Sleep (300);
+    system("color f0");
+    Sleep (100);
+    system("color 40");
+    int x,d=2,cx[300]={1,2},cy[300]={7,7},t=1,mx,my;
+    char tecla='a';
+    for(x=0;x<18;x++)
+    {   gotoxy(0,x);
+        cout << sqr;
+    }
+    for(x=0;x<26;x++)
+    {   gotoxy(x,0);
+        cout << sqr;
+    }
+    for(x=-0;x<18;x++)
+    {   gotoxy(26,x);
+        cout << sqr;
+    }
+    for(x=-0;x<27;x++)
+    {   gotoxy(x,18);
+        cout << sqr;
+    }
+    mx=(rand()%25)+1;
+    my=(rand()%17)+1;
+    while(tecla!='s')
+    {   while(tecla!='s'&&!(tecla=kbhit()))
+        {   for(x=t;x>0;x--)
+            {   cx[x]=cx[x-1];
+                cy[x]=cy[x-1];
+            }
+            if(d==0)cx[0]--;
+            if(d==1)cy[0]--;
+            if(d==2)cx[0]++;
+            if(d==3)cy[0]++;
+            gotoxy(cx[t],cy[t]);
+            cout << " ";
+            if(mx==cx[0]&&my==cy[0])
+            {   t++;
+                mx=(rand()%25)+1;
+                my=(rand()%17)+1;
+            }
+            gotoxy(cx[0],cy[0]);
+            cout << sqr;
+            gotoxy(mx,my);
+            printf("%c",1);
+            Sleep (Delay);
+            for(x=1;x<t;x++)
+            {   if(cx[0]==cx[x]&&cy[0]==cy[x])tecla='s';
+            }
+            if(cy[0]==0||cy[0]==18||cx[0]==0||cx[0]==26)tecla='s';
+        }
+        if(tecla!='s')tecla=getch();
+        if(tecla=='K')d=0;
+        if(tecla=='H')d=1;
+        if(tecla=='M')d=2;
+        if(tecla=='P')d=3;
+        if(cy[0]==0||cy[0]==18||cx[0]==0||cx[0]==26)tecla='s';
+    }
+    getch();
+    system ("color 0a");
+    system ("cls");
+
+}else
+    if (Opcao == 2) {
+        cin >> NOME;
+    }else
+    if (Opcao == 3) {
+        system ("cls");
+    }else
+    if (Opcao == 4) { /// ATENÇÃO : NECESSARIO AS BIBLIOTECAS WINNLIB E ITADOS PARA USAR ESTA PARTE DO CODIGO
+        cin >> Disco;
+//        LoadDisco ("*","'&&%","54B,86B",Disco);
+      //  CreateDisco (wchar_t * disco [2],NOME);
+    }else
+    if (Opcao == 0) {
+    	srand(time(NULL));
+        system ("cls");
+        exit(0);
+    }else{
+		cout<<"\tOpcao inexistente! Pressione ENTER para voltar ao MENU.\n" <<endl;
+		getch();
+	}
+    goto Cmd;
+    return 0;
+}
