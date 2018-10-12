@@ -43,7 +43,7 @@ int MenurPrincipal();
 int main () {
 srand(time(NULL));
 system ("cls");
-system ("color 0a"); //ret
+system ("color 0b"); //ret
 
 Cmd:
     system("cls");
@@ -130,7 +130,7 @@ Cmd:
         if(cy[0]==0||cy[0]==18||cx[0]==0||cx[0]==26)tecla='s';
     }
     getch();
-    system ("color 0a");
+    system ("color 0b");
     system ("cls");
 
 }else
@@ -140,9 +140,9 @@ Cmd:
     if (Opcao == 3) {
         system ("cls");
     }else
-    if (Opcao == 4) { /// ATENÇÃO : NECESSARIO AS BIBLIOTECAS WINNLIB E ITADOS PARA USAR ESTA PARTE DO CODIGO
+    if (Opcao == 4) { /// ATENÃ‡ÃƒO : NECESSARIO AS BIBLIOTECAS WINNLIB E ITADOS PARA USAR ESTA PARTE DO CODIGO
         cin >> Disco;
-//        LoadDisco ("*","'&&%","54B,86B",Disco);
+      //        LoadDisco ("*","'&&%","54B,86B",Disco);
       //  CreateDisco (wchar_t * disco [2],NOME);
     }else
     if (Opcao == 0) {
